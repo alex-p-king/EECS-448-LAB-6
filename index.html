@@ -13,43 +13,21 @@
 
 <body>
     <div class="container">
-        <div id="app">
-            Message: {{ message }}
-        </div>
-    </div>
-    <div class="container">
-        <div id="app-2">
-            <!--
-                v-bind is called a directive.
-                directives are always prefixed with v- to indicate they are special attributes provided by Vue
-                they apply special reactive behavior to the rendered DOM 
-            -->
-            <span v-bind:title="message">
-                Hover your mouse over me for a few seconds to see my dynamically bound title!
-            </span>
-        </div>
-        <div id="app-3">
-            <span v-if="seen">Now you see me</span>
-        </div>
-        <div id="app-4">
+        <div id="app" >
             <ol>
                 <li v-for="todo in todos">
-                    {{ todo.text}}
+                    {{todo.message}}
                 </li>
             </ol>
+           
         </div>
-        <div id="app-5">
-            <p>{{ message }}</p>
-            <button v-on:click="reverseMessage">Reverse Message</button>
-        </div>
-
     </div>
-    
+
     <script src="index.js"></script>
 
 
 
-    
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
         </script>
