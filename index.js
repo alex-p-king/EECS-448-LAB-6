@@ -1,8 +1,7 @@
-let bStopInfo = [];
 let app = new Vue({
     el: '#app',
     data: {
-        stops: bStopInfo
+        stops: []
     },
     mounted: fetch("https://utils.pauliankline.com/stops.json")
         .then(function(response){
@@ -11,10 +10,11 @@ let app = new Vue({
         .then(function(myJson){
             for(let i = 0; i < myJson.length; i++)
             {
-                bStopInfo.push(myJson[i])
+                app.stops.push(myJson[i]);
+                console.log(myJson[i]);
             }
             
-            console.log(myJson);
+            //console.log(myJson);
             
             
             
