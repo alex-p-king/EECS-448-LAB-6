@@ -13,13 +13,14 @@
 
 <body>
     <div class="container">
-        <div id="app" >
+        <div id="app">
+            <input id="number-of-stops" v-model.number="numStops" type="number" placeholder="edit me">
+            <p>number is: {{ numStops }}</p>
             <ol>
-                <li v-for="stop in stops">
-                    {{stop}}
+                <li v-for="stop in numStops">
+                    {{filteredStops}}
                 </li>
             </ol>
-           
         </div>
     </div>
 
