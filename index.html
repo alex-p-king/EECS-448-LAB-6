@@ -17,8 +17,16 @@
             <input id="number-of-stops" v-model.number="numStops" type="number" placeholder="edit me">
             <p>number is: {{ numStops }}</p>
             <ol>
-                <li v-for="stop in numStops">
-                    {{filteredStops}}
+                <li v-for="item in filteredStops">
+                    <div class="card">
+                        <div class="card-header">
+                            <b>{{item.name}}</b>
+                        </div>
+                        <div class="card-body">
+                            {{item.description}}<br>
+                            {{item.distance}}<br>
+                        </div>
+                    </div>
                 </li>
             </ol>
         </div>

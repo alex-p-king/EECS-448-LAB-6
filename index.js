@@ -7,10 +7,13 @@ let app = new Vue({
     computed: {
         filteredStops: function () {
             console.log("filtered stops function runnign")
+            let arr = []
             for (let i = 0; i < this.numStops; i++) {
-                console.log(this.stops[i])
-                return this.stops[i];
+                //console.log(this.stops[i])
+                arr.push(this.stops[i])
             }
+            console.log(arr);
+            return arr;
         }
     },
     mounted: fetch("https://utils.pauliankline.com/stops.json")
