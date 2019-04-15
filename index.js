@@ -3,7 +3,8 @@ let app = new Vue({
     data: {
         stops: [],
         numStops: 10,
-        userLocation: null
+        userDistance: [],
+        uPos: []
     },
     computed: {
         filteredStops: function () {
@@ -26,14 +27,22 @@ let app = new Vue({
         })
         .then(function (){
             navigator.geolocation.getCurrentPosition(onPositionReceived);
+            
         })
 })
 function onPositionReceived(position){
     console.log(position);
     let lat = position.coords.latitude
     let lon = position.coords.longitude
+    app.uPos.push(lat);
+    app.uPos.push(lon);
+
     console.log(lat);
     console.log(lon);
+    for(let i = 0; i < app.numStops; i++){
+        app.userDistance.push(calculateDistance(lat, lon, app.stops[i].latitude, app.stops[i].longitude));
+        console.log(app.userDistance[i]);
+    }
     
 }
 //www.geodatasource.com/developers/javascript*/
@@ -50,9 +59,10 @@ function calculateDistance(uLat,uLon,sLat,sLon){
         if(distance > 1){
             distance = 1
         }
-        distance = math.acos(distance);
+        distance = Math.acos(distance);
         distance = distance*(180/Math.PI);
         distance = distance*60*1.1515*1.609344
+        console.log(distance)
         return distance;
     }
 }
