@@ -8,10 +8,12 @@ let app = new Vue({
     },
     computed: {
         filteredStops: function () {
-
+            let oArr = [{}]
             let arr = []
             for (let i = 0; i < this.numStops; i++) {
                 arr.push(this.stops[i])
+                oArr.push({stop: this.stops[i], distanceFromUser: this.userDistance[i]});
+                console.log(oArr[i]);
             }
             return arr;
         }
