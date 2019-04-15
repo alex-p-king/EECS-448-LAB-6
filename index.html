@@ -16,19 +16,15 @@
         <div id="app">
             <input id="number-of-stops" v-model.number="numStops" type="number" placeholder="edit me">
             <p>number is: {{ numStops }}</p>
-            <ol>
-                <li v-for="item in filteredStops">
-                    <div class="card">
-                        <div class="card-header">
-                            <b>{{item.name}}</b>
-                        </div>
-                        <div class="card-body">
-                            {{item.description}}<br>
-                            {{userDistance}}<br>
-                        </div>
-                    </div>
-                </li>
-            </ol>
+            <div v-for="item in filteredStops" class="card">
+                <div class="card-header">
+                    <b>{{item.name}}</b>
+                </div>
+                <div class="card-body">
+                    {{item.description}}<br>
+                    <br>
+                </div>
+            </div>
         </div>
     </div>
 

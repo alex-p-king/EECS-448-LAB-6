@@ -4,17 +4,20 @@ let app = new Vue({
         stops: [],
         numStops: 10,
         userDistance: [],
-        uPos: []
+        uPos: [],
+        stopsAndDistances: [{}]
     },
     computed: {
         filteredStops: function () {
             let oArr = [{}]
             let arr = []
             for (let i = 0; i < this.numStops; i++) {
+                console.log(this.userDistance[i])
                 arr.push(this.stops[i])
                 oArr.push({stop: this.stops[i], distanceFromUser: this.userDistance[i]});
-                console.log(oArr[i]);
             }
+            this.stopsAndDistances = oArr;
+            
             return arr;
         }
     },
@@ -38,11 +41,8 @@ function onPositionReceived(position){
     app.uPos.push(lat);
     app.uPos.push(lon);
 
-    console.log(lat);
-    console.log(lon);
     for(let i = 0; i < app.stops.length; i++){
         app.userDistance.push(calculateDistance(lat, lon, app.stops[i].lat, app.stops[i].lon));
-        console.log(app.userDistance[i]);
     }
     
 }
