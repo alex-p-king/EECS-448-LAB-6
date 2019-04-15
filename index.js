@@ -31,7 +31,6 @@ let app = new Vue({
         })
 })
 function onPositionReceived(position){
-    console.log(position);
     let lat = position.coords.latitude
     let lon = position.coords.longitude
     app.uPos.push(lat);
@@ -40,30 +39,30 @@ function onPositionReceived(position){
     console.log(lat);
     console.log(lon);
     for(let i = 0; i < app.numStops; i++){
-        app.userDistance.push(calculateDistance(lat, lon, app.stops[i].latitude, app.stops[i].longitude));
+        app.userDistance.push(calculateDistance(lat, lon, app.stops[i].lat, app.stops[i].lon));
         console.log(app.userDistance[i]);
     }
     
 }
-//www.geodatasource.com/developers/javascript*/
 function calculateDistance(uLat,uLon,sLat,sLon){
     if(uLat === sLat && uLon === sLon ){
         return 0;
     }
     else{
-        let r_uLat = (Math.PI * uLat/180);
-        let r_sLat = (Math.PI * sLat/180);
-        let theta = uLon-sLon;
-        let r_theta = Math.PI * theta/180;
-        let distance = Math.sin(r_uLat)*Math.sin(r_sLat) + Math.cos(r_uLat)*Math.cos(r_sLat)*Math.cos(r_theta);
-        if(distance > 1){
-            distance = 1
-        }
-        distance = Math.acos(distance);
-        distance = distance*(180/Math.PI);
-        distance = distance*60*1.1515*1.609344
-        console.log(distance)
-        return distance;
+        let r_uLat = (Math.PI * uLat/180)//*(Math.PI * uLat/180);
+        let r_sLat = (Math.PI * sLat/180)//*(Math.PI * sLat/180);
+        let r_uLon = (Math.PI * uLon/180)//*(Math.PI * uLon/180);
+        let r_sLon = (Math.PI * sLon/180)//*(Math.PI * sLon/180);
+
+        let latDiff = (r_sLat-r_uLat);
+        let lonDiff = (r_sLon-r_uLon);
+        latDiff = latDiff*latDiff;
+        lonDiff = lonDiff*lonDiff;
+        //d = sqrt((x2-x1)^2 + (y2-y1)^2)
+        //distance formula in terms of radians
+        let distance = Math.sqrt(latDiff + lonDiff);
+        distance = distance*24901;
+        return distance.toFixed(2);
     }
 }
 
