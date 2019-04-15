@@ -40,7 +40,7 @@ function onPositionReceived(position){
 
     console.log(lat);
     console.log(lon);
-    for(let i = 0; i < app.numStops; i++){
+    for(let i = 0; i < app.stops.length; i++){
         app.userDistance.push(calculateDistance(lat, lon, app.stops[i].lat, app.stops[i].lon));
         console.log(app.userDistance[i]);
     }
